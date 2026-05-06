@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <product>
   <title>Northward</title>
-  <release-date>To Be Announced</release-date>
+  <!-- <release-date>To Be Announced</release-date> -->
   <website>https://www.playnorthward.com/</website>
 
   <!-- Link to request press copy: -->
-  <press-copy-request></press-copy-request>
+  <!--<press-copy-request></press-copy-request>-->
 
   <platforms>
     <platform>
@@ -120,11 +120,8 @@
       <website></website>
     </credit>
     <credit>
-      <person>Axel Olsson</person>
-      <role>Music &amp; Audio</role>
-
-      <!-- Optional: -->
-      <website>https://soundcloud.com/warpsence</website>
+      <person>Axel Olsson (@Warpsence)</person>
+      <role>Music &amp; Sound</role>
     </credit>
     <credit>
       <person>David Stenfors</person>
