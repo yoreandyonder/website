@@ -9,22 +9,6 @@
     yoreandyonder@gmail.com
   </press-contact>
 
-  <!-- Google analytics ID: -->
-  <analytics></analytics>
-
-  <phone></phone>
-  <address>
-    <line>
-      <!-- Street -->
-    </line>
-    <line>
-      <!-- City -->
-    </line>
-    <line>
-      <!-- Country -->
-    </line>
-  </address>
-
   <socials>
     <social>
       <name>Youtube</name>
@@ -66,7 +50,7 @@
       <text>  
       Yore &amp; Yonder is the result of many evenings spent after work, toiling on the unified dream of two friends. 
       The team met almost ten years ago at the University of Skövde in Sweden where they both studied game development and programming. 
-      During the years they worked on many smaller projects together before deciding to take on the challange of an ambitious game idea, what would become Northward.
+      During the years they worked on many smaller projects together before deciding to take on the challange of an ambitious game idea: that would eventually become Northward.
       </text>
     </history>
     <history>
