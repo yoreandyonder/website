@@ -21,14 +21,21 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
 
     body {
       background: var(--ink);
       color: var(--ink);
       font-family: 'Crimson Text', Georgia, serif;
       font-size: 18px;
-      overflow-x: hidden;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: clip;
     }
 
     /* ─── SCROLLBAR ──────────────────────────────────────── */
@@ -40,6 +47,8 @@
     #hero {
       position: relative;
       width: 100%;
+      max-width: 100vw;
+      min-height: 100svh;
       height: 100dvh;
       overflow: hidden;
       display: flex;
@@ -50,8 +59,9 @@
     #hero-bg {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
       background-image: url('assets/background.jpg');
       background-size: cover;
       background-position: center center;
@@ -86,6 +96,7 @@
     #hero-logo {
       position: relative;
       z-index: 2;
+      width: auto;
       max-width: min(840px, 160vw);
       max-height: 80vh;
       object-fit: contain;
@@ -230,6 +241,9 @@
     #content {
       position: relative;
       z-index: 10;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: clip;
       background: var(--parchment);
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
@@ -296,6 +310,7 @@
     /* ─── GAMES SECTION ──────────────────────────────────── */
     #games {
       padding: 0 2rem 5rem;
+      width: 100%;
       max-width: 1100px;
       margin: 0 auto;
     }
@@ -309,7 +324,7 @@
 
     .game-entry {
       display: grid;
-      grid-template-columns: 220px 1fr;
+      grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
       gap: 3rem;
       align-items: start;
       opacity: 0;
@@ -324,6 +339,8 @@
 
     .game-cover-wrap {
       position: relative;
+      width: 100%;
+      max-width: 220px;
       aspect-ratio: 2 / 3;
       overflow: hidden;
       border: 3px solid var(--sepia);
@@ -521,17 +538,229 @@
     }
 
     /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 680px) {
+    @media (max-width: 900px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-size: 17px;
+      }
+
+      #hero {
+        min-height: 100svh;
+        height: 100svh;
+        padding: 6.5rem 1.25rem 5.5rem;
+      }
+
+      #hero-bg {
+        height: 100svh;
+        background-attachment: scroll;
+        background-position: center center;
+        transform: none !important;
+      }
+
+      #hero-logo {
+        max-width: min(88vw, 560px);
+        max-height: 58svh;
+      }
+
+      nav {
+        padding: 1rem 1rem 0;
+        justify-content: center;
+      }
+
+      .nav-links {
+        max-width: calc(100vw - 2rem);
+        padding: 0.35rem 0.45rem;
+        gap: 0.1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        padding: 0.35rem 0.65rem;
+      }
+
+      .nav-sep {
+        font-size: 0.9rem;
+      }
+
+      #scroll-hint {
+        bottom: 1.25rem;
+        font-size: 0.68rem;
+      }
+
+      #scroll-hint::after {
+        height: 28px;
+      }
+
+      #hero-socials {
+        right: 1rem;
+        bottom: 1rem;
+        gap: 0.5rem;
+      }
+
+      .social-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .social-icon svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      #content::before {
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        white-space: nowrap;
+      }
+
+      .section-header {
+        padding: 3rem 1.25rem 1.5rem;
+      }
+
+      .section-label {
+        font-size: 0.78rem;
+        letter-spacing: 0.24em;
+      }
+
+      #games {
+        padding: 0 1.25rem 4rem;
+      }
+
+      .games-list {
+        gap: 2.5rem;
+        margin-top: 2rem;
+      }
+
       .game-entry {
         grid-template-columns: 1fr;
+        gap: 1.8rem;
       }
+
       .game-cover-wrap {
-        max-width: 200px;
+        width: min(68vw, 220px);
+        max-width: 220px;
+        margin: 0 auto;
       }
-      nav { padding: 1rem 1rem 0; }
-      #hero-socials { bottom: 1.2rem; right: 1.2rem; gap: 0.5rem; }
-      .social-icon { width: 30px; height: 30px; }
-      .social-icon svg { width: 13px; height: 13px; }
+
+      .game-info {
+        padding-top: 0;
+      }
+
+      .game-number,
+      .game-title,
+      .game-link {
+        text-align: center;
+      }
+
+      .game-link {
+        display: flex;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .game-desc {
+        font-size: 1.02rem;
+        line-height: 1.65;
+        padding-left: 1rem;
+      }
+
+      .game-entry-divider {
+        margin-top: 2.5rem;
+      }
+
+      footer {
+        padding: 2.5rem 1.25rem 2rem;
+      }
+
+      .footer-nav {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      #hero {
+        padding: 6rem 1rem 5rem;
+      }
+
+      #hero-logo {
+        max-width: 92vw;
+        max-height: 48svh;
+      }
+
+      .nav-links a {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        padding: 0.35rem 0.5rem;
+      }
+
+      #hero-socials {
+        flex-direction: row;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 4.25rem;
+      }
+
+      #scroll-hint {
+        bottom: 1rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 12vw, 2.5rem);
+      }
+
+      .ornament {
+        letter-spacing: 0.28em;
+      }
+
+      .game-cover-wrap {
+        width: min(74vw, 200px);
+      }
+
+      .game-desc {
+        border-left: 0;
+        padding-left: 0;
+        text-align: center;
+      }
+
+      .footer-socials {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .footer-copy {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-height: 560px) and (max-width: 900px) {
+      #hero {
+        padding-top: 4.5rem;
+        padding-bottom: 4rem;
+      }
+
+      #hero-logo {
+        max-height: 42svh;
+      }
+
+      #scroll-hint {
+        display: none;
+      }
+
+      #hero-socials {
+        bottom: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -672,11 +901,16 @@
     // ── Parallax: subtle scale on background ──
     const bg = document.getElementById('hero-bg');
     function onScroll() {
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        bg.style.transform = 'none';
+        return;
+      }
       const y = window.scrollY;
       const scale = 1 + y * 0.00015;
       bg.style.transform = `scale(${Math.min(scale, 1.08)})`;
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
 
     // ── Hide hero socials / scroll hint when below hero ──
     const heroSocials = document.getElementById('hero-socials');
