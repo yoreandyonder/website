@@ -534,6 +534,9 @@
     .mail:hover { color: var(--gold-light); }
     .contact-sub { margin: 2rem auto 0; max-width: 34rem; color: var(--aged-dim); font-style: italic; font-size: 1.12rem; }
     .contact-actions { margin-top: 2.2rem; }
+    button.btn { cursor: pointer; line-height: normal; }
+    .btn--sm svg { width: 12px; height: 12px; }
+    .copy-email.copied { color: var(--gold-light); border-color: var(--gold); }
     .socials { display: flex; justify-content: center; gap: 0.8rem; margin-top: 2.2rem; flex-wrap: wrap; }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
@@ -818,7 +821,7 @@
 
         <div class="frame apply reveal">
           <p><span class="label">How to apply</span> Email <a href="mailto:contact@yoreandyonder.com">contact@yoreandyonder.com</a> with the role in the subject line, and include a portfolio link, your CV and a few lines on why Northward. We read applications as they come in. Not seeing your role? Write to us anyway.</p>
-          <a href="mailto:contact@yoreandyonder.com?subject=Application%3A%20" class="btn btn--gold">Apply by email</a>
+          <button type="button" class="btn btn--gold copy-email" data-email="contact@yoreandyonder.com"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg><span>Copy email address</span></button>
         </div>
       </div>
     </section>
@@ -837,6 +840,7 @@
         <a class="mail reveal" href="mailto:contact@yoreandyonder.com">contact@yoreandyonder.com</a>
         <p class="contact-sub reveal">For press, business, or anything else, send us an email.</p>
         <div class="btn-row contact-actions reveal">
+          <button type="button" class="btn btn--sm copy-email" data-email="contact@yoreandyonder.com"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg><span>Copy email address</span></button>
           <a href="presskit/index.html" class="btn btn--sm">Press kit</a>
         </div>
         <div class="socials reveal">
@@ -903,6 +907,34 @@
       items.forEach(i => { if (i.isIntersecting) { i.target.classList.add('visible'); io.unobserve(i.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Copy the email address (mailto links do nothing without a mail app set up)
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+      return new Promise((resolve, reject) => {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); }
+        ta.remove();
+      });
+    }
+    document.querySelectorAll('.copy-email').forEach(btn => {
+      const label = btn.querySelector('span');
+      const original = label.textContent;
+      btn.addEventListener('click', () => {
+        const email = btn.dataset.email;
+        copyText(email).then(() => {
+          label.textContent = 'Copied';
+          btn.classList.add('copied');
+        }).catch(() => {
+          label.textContent = email;
+        }).finally(() => {
+          clearTimeout(btn._t);
+          btn._t = setTimeout(() => { label.textContent = original; btn.classList.remove('copied'); }, 2200);
+        });
+      });
+    });
   </script>
 </body>
 </html>
