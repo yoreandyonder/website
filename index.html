@@ -583,9 +583,6 @@
 
     .apply {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 2rem;
-      align-items: center;
       padding: 1.8rem 2.2rem;
     }
     .apply p { color: var(--aged-dim); font-size: 1.07rem; }
@@ -608,9 +605,6 @@
     .mail:hover { color: var(--gold-light); }
     .contact-sub { margin: 2rem auto 0; max-width: 34rem; color: var(--aged-dim); font-style: italic; font-size: 1.12rem; }
     .contact-actions { margin-top: 2.2rem; }
-    button.btn { cursor: pointer; line-height: normal; }
-    .btn--sm svg { width: 12px; height: 12px; }
-    .copy-email.copied { color: var(--gold-light); border-color: var(--gold); }
     .socials { display: flex; justify-content: center; gap: 0.8rem; margin-top: 2.2rem; flex-wrap: wrap; }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
@@ -820,7 +814,7 @@
           <h2 class="section-title">The Studio</h2>
           <span class="ornament" aria-hidden="true">❧ ✦ ❧</span>
           <hr class="divider" />
-          <p class="section-intro">We make games that we ourselves want to play, that do not yet exist.</p>
+          <p class="section-intro">We make the games we wish existed.</p>
         </div>
         <div class="studio-text reveal">
           <p>Yore &amp; Yonder is the result of many evenings spent after work, toiling on the shared dream of two friends.</p>
@@ -850,7 +844,7 @@
             <div>
               <h3>Marcus Karåker</h3>
               <span class="label">Co-founder · CEO &amp; Creative Director</span>
-              <p>Leads the creative direction of Northward. Marcus loves complex systems, procedural generation, systemic narrative and the ways games can tell interactive stories.</p>
+              <p>Marcus loves complex systems, world building, systemic narrative and the ways games can tell interactive stories.</p>
             </div>
           </article>
           <article class="frame person reveal">
@@ -858,7 +852,7 @@
             <div>
               <h3>Filip Bergqvist</h3>
               <span class="label">Co-founder · CTO &amp; Tech Director</span>
-              <p>A software architecture and gameplay specialist with many years of experience across multiple game engines. Filip is all about clever tech solutions, efficient pipelines and tight systems.</p>
+              <p>Filip loves software architecture, gameplay programming, efficient pipelines and clever tech solutions to tricky problems.</p>
             </div>
           </article>
         </div>
@@ -895,7 +889,6 @@
 
         <div class="frame apply reveal">
           <p><span class="label">How to apply</span> Email <a href="mailto:contact@yoreandyonder.com">contact@yoreandyonder.com</a> with the role in the subject line, and include a portfolio link, your CV and a few lines on why Northward. We read applications as they come in. Not seeing your role? Write to us anyway.</p>
-          <button type="button" class="btn btn--gold copy-email" data-email="contact@yoreandyonder.com"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg><span>Copy email address</span></button>
         </div>
       </div>
     </section>
@@ -914,7 +907,6 @@
         <a class="mail reveal" href="mailto:contact@yoreandyonder.com">contact@yoreandyonder.com</a>
         <p class="contact-sub reveal">For press, business, or anything else, send us an email.</p>
         <div class="btn-row contact-actions reveal">
-          <button type="button" class="btn btn--sm copy-email" data-email="contact@yoreandyonder.com"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg><span>Copy email address</span></button>
           <a href="presskit/index.html" class="btn btn--sm">Press kit</a>
         </div>
         <div class="socials reveal">
@@ -1060,33 +1052,6 @@
       });
     })();
 
-    // Copy the email address (mailto links do nothing without a mail app set up)
-    function copyText(text) {
-      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-      return new Promise((resolve, reject) => {
-        const ta = document.createElement('textarea');
-        ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); }
-        ta.remove();
-      });
-    }
-    document.querySelectorAll('.copy-email').forEach(btn => {
-      const label = btn.querySelector('span');
-      const original = label.textContent;
-      btn.addEventListener('click', () => {
-        const email = btn.dataset.email;
-        copyText(email).then(() => {
-          label.textContent = 'Copied';
-          btn.classList.add('copied');
-        }).catch(() => {
-          label.textContent = email;
-        }).finally(() => {
-          clearTimeout(btn._t);
-          btn._t = setTimeout(() => { label.textContent = original; btn.classList.remove('copied'); }, 2200);
-        });
-      });
-    });
   </script>
 </body>
 </html>
