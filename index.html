@@ -553,6 +553,12 @@
     .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
     .person .label { display: block; font-size: 0.74rem; letter-spacing: 0.24em; margin: 0.4rem 0 0.9rem; }
     .person p { color: var(--aged-dim); font-size: 1.05rem; line-height: 1.65; }
+    .member { display: flex; flex-direction: column; gap: 1rem; }
+    .games { flex: 1; padding: 1.2rem 1.8rem 1.3rem; }
+    .games .label { display: block; font-size: 0.72rem; letter-spacing: 0.24em; margin-bottom: 0.45rem; }
+    .games ul { list-style: none; display: flex; flex-wrap: wrap; row-gap: 0.2rem; color: var(--aged-dim); font-size: 1.02rem; }
+    .games li { white-space: nowrap; }
+    .games li:not(:last-child)::after { content: '·'; margin: 0 0.55rem; color: var(--gold); }
 
     /* ─── WORK WITH US ───────────────────────────────────── */
     .roles {
@@ -669,6 +675,7 @@
       .video-frame { padding: 7px; }
       .video-frame::before { inset: 3px; }
       .person { grid-template-columns: 1fr; padding: 1.3rem; gap: 1.4rem; }
+      .games { padding: 1.1rem 1.3rem 1.2rem; }
       .portrait { max-width: 240px; }
       .features { padding: 1.4rem 1.3rem; }
       .role-card { padding: 1.6rem 1.4rem 1.4rem; }
@@ -839,6 +846,7 @@
           <p class="section-intro">Two founders, with a few long-time freelance collaborators along for the voyage.</p>
         </div>
         <div class="team">
+        <div class="member">
           <article class="frame person reveal">
             <div class="portrait"><img src="assets/team/marcus-web.jpg" alt="Marcus Karåker" width="640" height="800" loading="lazy" /></div>
             <div>
@@ -847,6 +855,12 @@
               <p>Marcus loves complex systems, world building, systemic narrative and the ways games can tell interactive stories.</p>
             </div>
           </article>
+          <aside class="frame games reveal">
+            <span class="label">Favourite games</span>
+            <ul><li>Outer Wilds</li><li>Crusader Kings 3</li><li>Minecraft</li><li>World of Warcraft</li><li>The Elder Scrolls IV: Oblivion</li></ul>
+          </aside>
+        </div>
+        <div class="member">
           <article class="frame person reveal">
             <div class="portrait"><img src="assets/team/filip-web.jpg" alt="Filip Bergqvist" width="640" height="800" loading="lazy" /></div>
             <div>
@@ -855,6 +869,11 @@
               <p>Filip loves software architecture, gameplay programming, efficient pipelines and clever tech solutions to tricky problems.</p>
             </div>
           </article>
+          <aside class="frame games reveal">
+            <span class="label">Favourite games</span>
+            <ul><li>Outer Wilds</li><li>Red Dead Redemption 2</li><li>Sea of Thieves</li><li>Factorio</li><li>The Last Guardian</li><li>Shadow of the Colossus</li></ul>
+          </aside>
+        </div>
         </div>
       </div>
     </section>
