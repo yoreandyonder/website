@@ -571,9 +571,12 @@
       padding: 2.2rem 2.2rem 1.8rem;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.25s;
+      color: inherit;
+      transition: border-color 0.25s, background 0.25s;
     }
-    .role-card:hover { border-color: var(--frame-strong); }
+    .role-card:hover { color: inherit; border-color: var(--frame-strong); background: rgba(26,17,8,0.75); }
+    .role-card:hover h3 { color: var(--gold-light); }
+    .role-card h3 { transition: color 0.2s; }
     .role-card .label { font-size: 0.72rem; margin-bottom: 0.6rem; opacity: 0.85; }
     .role-card h3 { margin-bottom: 1rem; }
     .role-card p:not(.label) { color: var(--aged-dim); margin-bottom: 1.6rem; flex: 1; font-size: 1.07rem; }
@@ -585,7 +588,13 @@
       color: var(--aged-faint);
       border-top: 1px solid var(--frame-inner);
       padding-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.4rem 1rem;
     }
+    .role-link { color: var(--gold); transition: color 0.2s; }
+    .role-card:hover .role-link { color: var(--gold-light); }
 
     .apply {
       display: grid;
@@ -892,18 +901,18 @@
         </div>
 
         <div class="roles">
-          <article class="frame role-card reveal">
+          <a class="frame role-card reveal" href="https://www.linkedin.com/jobs/view/4489749190/" target="_blank" rel="noopener">
             <p class="label">No. I · Open role</p>
             <h3>Level &amp; Quest Designer</h3>
             <p>Do the level design for Northward's islands, settlements, caves and ruins, then design, script and write the quests, puzzles and NPCs that live in them. The game doesn't hold the player's hand, so layout, puzzles and dialogue are one design problem, and it's yours to solve.</p>
-            <div class="role-meta">Full-time · Permanent · On-site in Stockholm</div>
-          </article>
-          <article class="frame role-card reveal">
+            <div class="role-meta"><span>Full-time · Permanent · On-site in Stockholm</span><span class="role-link">View on LinkedIn ↗</span></div>
+          </a>
+          <a class="frame role-card reveal" href="https://www.linkedin.com/jobs/view/4489745621/" target="_blank" rel="noopener">
             <p class="label">No. II · Open role</p>
             <h3>Generalist Game Artist</h3>
             <p>Model everything players see, from environments and props to creatures, characters and ships, and draw icons, 2D assets and concept art. The look is stylised low poly with exaggerated shapes: a cosy, slightly steampunky fairy tale with real danger in it.</p>
-            <div class="role-meta">Full-time · Permanent · On-site in Stockholm</div>
-          </article>
+            <div class="role-meta"><span>Full-time · Permanent · On-site in Stockholm</span><span class="role-link">View on LinkedIn ↗</span></div>
+          </a>
         </div>
 
         <div class="frame apply reveal">
